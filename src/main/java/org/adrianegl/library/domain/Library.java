@@ -27,12 +27,32 @@ public class Library {
         users.put(user.getId(), user);
     }
 
+    private Item findItemById(String itemId) {
+        for (Item item : items) {
+            if (item.getId().equals(itemId)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
     public void borrowItem(String userId, String itemId) {
 
     }
 
     public void returnItem(String userId, String itemId) {
         User user = users.get(userId);
+
+        if (user == null) {
+            throw new IllegalArgumentException("User not found");
+        }
+
+    }
+
+    //Load User
+
+    public void loadUsersFromCSV(String path) {
+
     }
 
 }
