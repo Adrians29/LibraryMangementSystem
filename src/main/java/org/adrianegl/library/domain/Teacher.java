@@ -5,6 +5,7 @@ import org.adrianegl.library.util.Constants;
 public class Teacher extends User {
     public Teacher (String name) {
         super(name);
+        this.id = String.format("T%04d", Constants.nextTeacherId++);
     }
 
     @Override

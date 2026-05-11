@@ -19,7 +19,7 @@ public abstract class Item implements Reportable {
         BORROWED, IN_STORE, LOST;
     }
     public Item(String title, ItemStatus status) {
-        this.id = String.format("%04d", Constants.nextId++);
+        this.id = String.format("I%04d", Constants.nextItemId++);
         this.title = title;
             this.status = status;
     }

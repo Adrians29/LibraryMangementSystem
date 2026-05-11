@@ -14,7 +14,6 @@ public abstract class User {
 
 
     public User(String name) {
-        this.id = String.format("%04d", Constants.nextId++);
         this.name = name;
         this.borrowedItems = new ArrayList<>();
     }
