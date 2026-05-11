@@ -16,4 +16,12 @@ public class Library {
         transactionHistory = new Stack<>();
         uniqueTitles = new HashSet<>();
     }
+
+    public void addItem(Item item) {
+        items.add(item);
+    }
+
+    public void registerUser(User user) {
+        users.put(user.getId(), user);
+    }
 }
