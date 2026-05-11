@@ -1,5 +1,8 @@
 package org.adrianegl.library.domain;
 
+import lombok.Getter;
+
+@Getter
 public class DVD extends Item {
     private String director;
     private int duration;

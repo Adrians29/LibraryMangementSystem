@@ -3,9 +3,10 @@ package org.adrianegl.library.domain;
 import lombok.Getter;
 import org.adrianegl.library.util.Validation;
 
+@Getter
 public class Book extends Item {
     private String isbn;
-    @Getter private String author;
+    private String author;
     private String genre;
 
 
