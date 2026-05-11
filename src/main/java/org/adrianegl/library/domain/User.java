@@ -1,10 +1,12 @@
 package org.adrianegl.library.domain;
 
+import lombok.Getter;
 import org.adrianegl.library.util.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 public abstract class User {
     protected String id;
     protected String name;
