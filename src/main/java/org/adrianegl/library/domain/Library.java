@@ -139,4 +139,11 @@ public class Library {
         }
     }
 
+    /**
+     * Sorts the items by their titles
+     */
+    public void sortItemsByTitle() {
+        items.sort(Comparator.comparing(Item::getTitle));
+    }
+
 }
