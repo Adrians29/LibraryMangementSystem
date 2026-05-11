@@ -8,4 +8,12 @@ public class Library {
     private Queue<User> waitingQueue;
     private Stack<String> transactionHistory;
     private Set<String> uniqueTitles;
+
+    public Library() {
+        items = new ArrayList<>();
+        users = new HashMap<>();
+        waitingQueue = new LinkedList<>();
+        transactionHistory = new Stack<>();
+        uniqueTitles = new HashSet<>();
+    }
 }
