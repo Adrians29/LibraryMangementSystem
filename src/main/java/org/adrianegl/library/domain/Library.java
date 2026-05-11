@@ -1,10 +1,12 @@
 package org.adrianegl.library.domain;
 
+import lombok.Getter;
+
 import java.util.*;
 
 public class Library {
-    private List<Item> items;
-    private Map<String, User> users;
+    @Getter private List<Item> items;
+    @Getter private Map<String, User> users;
     private Queue<User> waitingQueue;
     private Stack<String> transactionHistory;
     private Set<String> uniqueTitles;
@@ -24,4 +26,13 @@ public class Library {
     public void registerUser(User user) {
         users.put(user.getId(), user);
     }
+
+    public void borrowItem(String userId, String itemId) {
+
+    }
+
+    public void returnItem(String userId, String itemId) {
+        User user = users.get(userId);
+    }
+
 }
