@@ -242,10 +242,17 @@ public class Library {
         }
     }
 
-    public void showTransactionHistory() {
+    public void printTransactionHistory() {
         System.out.println("=====HISTORY=====");
         for (String transaction : transactionHistory) {
             System.out.println(transaction);
+        }
+    }
+
+    public void printWaitingQueue() {
+        System.out.println("=====WAITING-QUEUE=====");
+        for (User user : waitingQueue) {
+            System.out.println(user.getName());
         }
     }
 
