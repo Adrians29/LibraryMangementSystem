@@ -242,4 +242,11 @@ public class Library {
         }
     }
 
+    public void showTransactionHistory() {
+        System.out.println("=====HISTORY=====");
+        for (String transaction : transactionHistory) {
+            System.out.println(transaction);
+        }
+    }
+
 }
