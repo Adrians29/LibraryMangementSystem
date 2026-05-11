@@ -224,4 +224,22 @@ public class Library {
         }
     }
 
+    public void exportItems() {
+        File file = new File(Constants.ITEMS_CSV_PATH);
+
+        try (FileWriter fileWriter = new FileWriter(file)) {
+            for (Item item : items) {
+                if (item instanceof Book book) {
+                    fileWriter.write(String.format("%s,%s,%s,%s,%s\n", book.getId(), book.getTitle(), book.getIsbn(), book.getAuthor(), book.getGenre()));
+                } else if (item instanceof DVD dvd) {
+                    fileWriter.write(String.format("%s,%s,%s,%d\n", dvd.getId(), dvd.getTitle(), dvd.getDirector(), dvd.getDuration()));
+                } else if (item instanceof Magazine magazine) {
+                    fileWriter.write(String.format("%s,%s,%s,%d\n", magazine.getId(), magazine.getTitle(), magazine.getPublisher(), magazine.getIssueNumber()));
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
