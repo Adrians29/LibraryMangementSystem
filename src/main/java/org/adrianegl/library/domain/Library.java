@@ -6,6 +6,8 @@ import org.adrianegl.library.util.Constants;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -207,6 +209,18 @@ public class Library {
             }
         } catch (FileNotFoundException e) {
             System.out.println("Item CSV file not found");
+        }
+    }
+
+    public void exportUsers() {
+        File file = new File(Constants.USERS_CSV_PATH);
+
+        try (FileWriter fileWriter = new FileWriter(file)){
+            for (User user : users.values()) {
+                fileWriter.write(String.format("%s,%s,%s\n", user.getClass().getSimpleName(), user.getId(), user.getName()));
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
