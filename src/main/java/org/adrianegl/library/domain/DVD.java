@@ -1,4 +1,4 @@
 package org.adrianegl.library.domain;
 
-public class DVD {
+public class DVD extends Item {
 }

@@ -1,4 +1,4 @@
 package org.adrianegl.library.domain;
 
-public class Magazine {
+public class Magazine extends Item {
 }
