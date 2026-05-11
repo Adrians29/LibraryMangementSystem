@@ -1,5 +1,7 @@
 package org.adrianegl.library.domain;
 
+import org.adrianegl.library.util.Constants;
+
 public class Item {
     protected String id;
     protected String title;
@@ -10,8 +12,8 @@ public class Item {
     }
 
     public Item(String title, ItemStatus status) {
-        this.id = id;
+        this.id = String.format("%04d", Constants.nextId++);
         this.title = title;
-        this.status = status;
+            this.status = ItemStatus.IN_STORE;
     }
 }
