@@ -1,17 +1,23 @@
 package org.adrianegl.library.domain;
 
+import org.adrianegl.library.util.Constants;
+
 public class Student extends User {
-    public Student(String id, String name) {
-        super(id, name);
+    public Student(String name) {
+        super(name);
     }
 
     @Override
     public int getBorrowLimit() {
-        return 0;
+        return Constants.MAX_BOOKS_STUDENT;
     }
 
     @Override
     public boolean canBorrow(Item item) {
-        return false;
+        if (!(item instanceof Book)) {
+            return false;
+        }
+
+        return borrowedItems.size() < getBorrowLimit();
     }
 }
