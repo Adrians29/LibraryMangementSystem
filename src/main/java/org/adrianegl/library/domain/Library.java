@@ -69,6 +69,13 @@ public class Library {
         if (user == null) {
             throw new IllegalArgumentException("User not found");
         }
+        Item item = findItemById(itemId);
+        if (item == null) {
+            throw new IllegalArgumentException("Item not found");
+        }
+        user.returnItem(item);
+        item.setStatus(Item.ItemStatus.IN_STORE);
+        transactionHistory.push(user.getName() + " returned " + item.getTitle());
 
     }
 
