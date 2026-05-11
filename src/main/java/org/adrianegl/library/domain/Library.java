@@ -146,6 +146,9 @@ public class Library {
         items.sort(Comparator.comparing(Item::getTitle));
     }
 
+    /**
+     * Sorts the users by their names
+     */
     public void sortUsersByName() {
         List<User> sortedUsers = new ArrayList<>(users.values());
 
