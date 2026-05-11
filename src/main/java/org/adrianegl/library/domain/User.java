@@ -21,4 +21,12 @@ public abstract class User {
 
     public abstract boolean canBorrow(Item item);
 
+    public void borrowItem(Item item) {
+        borrowedItems.add(item);
+    }
+
+    public void returnItem(Item item) {
+        borrowedItems.remove(item);
+    }
+
 }
