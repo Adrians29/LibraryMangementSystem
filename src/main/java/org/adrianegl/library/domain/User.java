@@ -17,4 +17,8 @@ public abstract class User {
         this.borrowedItems = new ArrayList<>();
     }
 
+    public abstract int getBorrowLimit();
+
+    public abstract boolean canBorrow(Item item);
+
 }
