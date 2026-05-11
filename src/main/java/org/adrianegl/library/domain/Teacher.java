@@ -1,4 +1,4 @@
 package org.adrianegl.library.domain;
 
-public class Teacher {
+public class Teacher extends User {
 }
