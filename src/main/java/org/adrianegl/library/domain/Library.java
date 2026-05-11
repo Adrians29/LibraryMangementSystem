@@ -179,7 +179,14 @@ public class Library {
                 String name = elements[2];
 
                 User user = switch (type) {
-                    case "Student" -> new Student(name);
+                    case "Student" -> {
+                      int number = Integer.parseInt(id.substring(1));
+                      if (number >= Constants.nextStudentId) {
+                          Constants.nextStudentId = number + 1;
+                      }
+
+                      yield new Student(name);
+                    }
                     case "Teacher" -> new Teacher(name);
                     case "Admin" -> new Admin(name);
                     default -> throw new RuntimeException("Invalid user type");
