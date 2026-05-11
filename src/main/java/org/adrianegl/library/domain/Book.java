@@ -13,7 +13,7 @@ public class Book extends Item {
     public Book(String title, ItemStatus status, String isbn, String author, String genre) {
         super(title, status);
 
-        if (!Validation.isValidISBM(isbn)) {
+        if (!Validation.isValidISBN(isbn)) {
             throw new IllegalArgumentException("Invalid ISBN");
         }
 
