@@ -200,7 +200,7 @@ public class Library {
                 Item item = switch (type) {
                     case "Book" -> new Book(elements[1], Item.ItemStatus.valueOf(elements[2]), elements[3], elements[4], elements[5]);
                     case "DVD" -> new DVD(elements[1], Item.ItemStatus.valueOf(elements[2]),elements[3], Integer.parseInt(elements[4]));
-                    case "Magazine" -> new Magazine(elements[1], Item.ItemStatus.valueOf(elements[2]), elements[3], elements[4], elements[5]);
+                    case "Magazine" -> new Magazine(elements[1], Item.ItemStatus.valueOf(elements[2]), elements[3], Integer.parseInt(elements[4]));
                     default -> throw new RuntimeException("Invalid item type");
                 };
                 addItem(item);
