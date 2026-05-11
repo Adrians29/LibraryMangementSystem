@@ -54,7 +54,9 @@ public class Library {
             throw new IllegalArgumentException("Item not found");
         }
 
-        if (!user.canBorrow(item)) {
+        if (item.getStatus() != Item.ItemStatus.IN_STORE) {
+            waitingQueue.offer(user);
+
             throw new IllegalStateException("Item unavailable, User added to queue");
         }
 
