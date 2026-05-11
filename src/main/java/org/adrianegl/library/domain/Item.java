@@ -8,7 +8,7 @@ import org.adrianegl.library.util.Constants;
 
 @Getter
 @ToString
-public class Item implements Reportable {
+public abstract class Item implements Reportable {
     protected String id;
     protected String title;
     @Setter protected ItemStatus status;
