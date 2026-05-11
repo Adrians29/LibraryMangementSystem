@@ -95,7 +95,12 @@ public class Library {
                 .collect(Collectors.toList());
     }
 
-    // Recursive search
+    /**
+     * Search an item with a keyword and index
+     * @param keyword the keyword of the item
+     * @param index the index of the item
+     * @return the item of the keyword, index
+     */
     public Item searchRecursive(String keyword, int index) {
         if (index >= items.size()) {
             return null;
@@ -108,6 +113,19 @@ public class Library {
         }
 
         return searchRecursive(keyword, index + 1);
+    }
+
+    /**
+     * Search a book by its author
+     * @param author the author of the book
+     * @return the books of the author
+     */
+    public List<Book> searchByAuthor(String author) {
+        return items.stream()
+                .filter(item -> item instanceof Book)
+                .map(item -> (Book) item)
+                .filter(book -> book.getAuthor().toLowerCase().contains(author.toLowerCase()))
+                .collect(Collectors.toList());
     }
 
 }
