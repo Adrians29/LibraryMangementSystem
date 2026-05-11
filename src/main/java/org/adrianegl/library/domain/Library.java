@@ -37,7 +37,24 @@ public class Library {
     }
 
     public void borrowItem(String userId, String itemId) {
+        User user = users.get(userId);
+        if (user == null) {
+            throw new IllegalArgumentException("User not found");
+        }
 
+        Item item = findItemById(itemId);
+
+        if (item == null) {
+            throw new IllegalArgumentException("Item not found");
+        }
+
+        if (!user.canBorrow(item)) {
+            throw new IllegalStateException("Item unavailable, User added to queue");
+        }
+
+        if (!user.canBorrow(item)) {
+            throw new IllegalStateException("Borrow limit exceeded");
+        }
     }
 
     public void returnItem(String userId, String itemId) {
