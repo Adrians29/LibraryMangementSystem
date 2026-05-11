@@ -146,4 +146,13 @@ public class Library {
         items.sort(Comparator.comparing(Item::getTitle));
     }
 
+    public void sortUsersByName() {
+        List<User> sortedUsers = new ArrayList<>(users.values());
+
+        sortedUsers.sort(Comparator.comparing(User::getName));
+        for (User user : sortedUsers) {
+            System.out.println(user.getName());
+        }
+    }
+
 }
