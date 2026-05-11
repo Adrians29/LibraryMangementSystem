@@ -2,7 +2,10 @@ package org.adrianegl.library.domain;
 
 import lombok.Getter;
 import org.adrianegl.library.interfaces.Reportable;
+import org.adrianegl.library.util.Constants;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -81,12 +84,6 @@ public class Library {
 
     }
 
-    //Load User
-
-    public void loadUsersFromCSV(String path) {
-
-    }
-
     /**
      * Search an item/items by a keyword
      * @param keyword the keyword of the item
@@ -159,6 +156,35 @@ public class Library {
         sortedUsers.sort(Comparator.comparing(User::getName));
         for (User user : sortedUsers) {
             System.out.println(user.getName());
+        }
+    }
+
+
+    /**
+     * Load the users from the CSV file
+     */
+    public void loadUsers() {
+        File file = new File(Constants.USERS_CSV_PATH);
+
+        try (Scanner scanner = new Scanner(file)) {
+            while (scanner.hasNext()) {
+                String line = scanner.nextLine();
+                String[] elements = line.split(",");
+
+                String type = elements[0];
+                String id = elements[1];
+                String name = elements[2];
+
+                User user = switch (type) {
+                    case "Student" -> new Student(name);
+                    case "Teacher" -> new Teacher(name);
+                    case "Admin" -> new Admin(name);
+                    default -> throw new RuntimeException("Invalid user type");
+                };
+                registerUser(user);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("User CSV file not found");
         }
     }
 
