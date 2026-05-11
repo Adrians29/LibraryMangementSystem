@@ -3,6 +3,7 @@ package org.adrianegl.library.domain;
 import lombok.Getter;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Library {
     @Getter private List<Item> items;
@@ -83,6 +84,15 @@ public class Library {
 
     public void loadUsersFromCSV(String path) {
 
+    }
+
+    // Search by streams
+    public List<Item> searchStream(String keyword) {
+        Set<String> seenTitles = new HashSet<>();
+        return  items.stream()
+                .filter(item -> item.getTitle().toLowerCase().contains(keyword.toLowerCase()))
+                .filter(item -> seenTitles.add(item.getTitle()))
+                .collect(Collectors.toList());
     }
 
 }
