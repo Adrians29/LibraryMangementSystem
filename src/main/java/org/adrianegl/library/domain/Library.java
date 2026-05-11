@@ -175,6 +175,7 @@ public class Library {
                 String[] elements = line.split(",");
 
                 String type = elements[0];
+                String id = elements[1];
                 String name = elements[2];
 
                 User user = switch (type) {
@@ -183,6 +184,7 @@ public class Library {
                     case "Admin" -> new Admin(name);
                     default -> throw new RuntimeException("Invalid user type");
                 };
+                user.id = id;
                 registerUser(user);
             }
         } catch (FileNotFoundException e) {
@@ -231,11 +233,11 @@ public class Library {
         try (FileWriter fileWriter = new FileWriter(file)) {
             for (Item item : items) {
                 if (item instanceof Book book) {
-                    fileWriter.write(String.format("%s,%s,%s,%s,%s\n", book.getId(), book.getTitle(), book.getIsbn(), book.getAuthor(), book.getGenre()));
+                    fileWriter.write(String.format("%s,%s,%s,%s,%s,%s\n", book.getId(), book.getTitle(), book.getStatus(), book.getIsbn(), book.getAuthor(), book.getGenre()));
                 } else if (item instanceof DVD dvd) {
-                    fileWriter.write(String.format("%s,%s,%s,%d\n", dvd.getId(), dvd.getTitle(), dvd.getDirector(), dvd.getDuration()));
+                    fileWriter.write(String.format("%s,%s,%s,%s,%d\n", dvd.getId(), dvd.getTitle(), dvd.getStatus(), dvd.getDirector(), dvd.getDuration()));
                 } else if (item instanceof Magazine magazine) {
-                    fileWriter.write(String.format("%s,%s,%s,%d\n", magazine.getId(), magazine.getTitle(), magazine.getPublisher(), magazine.getIssueNumber()));
+                    fileWriter.write(String.format("%s,%s,%s,%s,%d\n", magazine.getId(), magazine.getTitle(), magazine.getStatus(), magazine.getPublisher(), magazine.getIssueNumber()));
                 }
             }
         } catch (IOException e) {
