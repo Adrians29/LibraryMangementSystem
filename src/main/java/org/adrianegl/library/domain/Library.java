@@ -172,7 +172,6 @@ public class Library {
                 String[] elements = line.split(",");
 
                 String type = elements[0];
-                String id = elements[1];
                 String name = elements[2];
 
                 User user = switch (type) {
@@ -185,6 +184,29 @@ public class Library {
             }
         } catch (FileNotFoundException e) {
             System.out.println("User CSV file not found");
+        }
+    }
+
+    /**
+     * Load the items from the CSV file
+     */
+    public void loadItems() {
+        File file = new File(Constants.ITEMS_CSV_PATH);
+        try (Scanner scanner = new Scanner(file)) {
+            while (scanner.hasNext()) {
+                String line = scanner.nextLine();
+                String[] elements = line.split(",");
+                String type = elements[0];
+                Item item = switch (type) {
+                    case "Book" -> new Book(elements[1], Item.ItemStatus.valueOf(elements[2]), elements[3], elements[4], elements[5]);
+                    case "DVD" -> new DVD(elements[1], Item.ItemStatus.valueOf(elements[2]),elements[3], Integer.parseInt(elements[4]));
+                    case "Magazine" -> new Magazine(elements[1], Item.ItemStatus.valueOf(elements[2]), elements[3], elements[4], elements[5]);
+                    default -> throw new RuntimeException("Invalid item type");
+                };
+                addItem(item);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Item CSV file not found");
         }
     }
 
