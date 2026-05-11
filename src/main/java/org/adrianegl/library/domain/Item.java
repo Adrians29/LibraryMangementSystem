@@ -21,7 +21,7 @@ public class Item implements Reportable {
     public Item(String title, ItemStatus status) {
         this.id = String.format("%04d", Constants.nextId++);
         this.title = title;
-            this.status = ItemStatus.IN_STORE;
+            this.status = status;
     }
 
     @Override
