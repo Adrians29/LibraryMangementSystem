@@ -95,4 +95,19 @@ public class Library {
                 .collect(Collectors.toList());
     }
 
+    // Recursive search
+    public Item searchRecursive(String keyword, int index) {
+        if (index >= items.size()) {
+            return null;
+        }
+
+        Item item = items.get(index);
+
+        if (item.getTitle().toLowerCase().contains(keyword.toLowerCase())) {
+            return item;
+        }
+
+        return searchRecursive(keyword, index + 1);
+    }
+
 }
