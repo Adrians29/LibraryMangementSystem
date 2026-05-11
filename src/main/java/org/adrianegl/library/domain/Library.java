@@ -187,8 +187,22 @@ public class Library {
 
                       yield new Student(name);
                     }
-                    case "Teacher" -> new Teacher(name);
-                    case "Admin" -> new Admin(name);
+                    case "Teacher" -> {
+                        int number = Integer.parseInt(id.substring(1));
+                        if (number >= Constants.nextTeacherId) {
+                            Constants.nextTeacherId = number + 1;
+                        }
+
+                        yield new Teacher(name);
+                    }
+                    case "Admin" -> {
+                        int number = Integer.parseInt(id.substring(1));
+                        if (number >= Constants.nextAdminId) {
+                            Constants.nextAdminId = number + 1;
+                        }
+
+                        yield new Admin(name);
+                    }
                     default -> throw new RuntimeException("Invalid user type");
                 };
                 user.id = id;
