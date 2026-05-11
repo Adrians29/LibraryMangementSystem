@@ -1,7 +1,6 @@
 package org.adrianegl.library.domain;
 
 import lombok.Getter;
-import org.adrianegl.library.interfaces.Reportable;
 import org.adrianegl.library.util.Constants;
 
 import java.io.File;
