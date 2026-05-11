@@ -1,6 +1,7 @@
 package org.adrianegl.library.domain;
 
 import lombok.Getter;
+import org.adrianegl.library.interfaces.Reportable;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -126,6 +127,16 @@ public class Library {
                 .map(item -> (Book) item)
                 .filter(book -> book.getAuthor().toLowerCase().contains(author.toLowerCase()))
                 .collect(Collectors.toList());
+    }
+
+    /**
+     * Generates a report of the items of the library
+     */
+    public void generateItemsReport() {
+        System.out.println("LIBRARY-REPORT");
+        for (Item item : items) {
+            System.out.println(item.getReportDetails());
+        }
     }
 
 }
