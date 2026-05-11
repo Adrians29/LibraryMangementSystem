@@ -55,6 +55,12 @@ public class Library {
         if (!user.canBorrow(item)) {
             throw new IllegalStateException("Borrow limit exceeded");
         }
+
+        user.borrowItem(item);
+
+        item.setStatus(Item.ItemStatus.BORROWED);
+        transactionHistory.push(user.getName() + " borrowed " + item.getTitle());
+
     }
 
     public void returnItem(String userId, String itemId) {
