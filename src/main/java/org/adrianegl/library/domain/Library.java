@@ -87,7 +87,11 @@ public class Library {
 
     }
 
-    // Search by streams
+    /**
+     * Search an item/items by a keyword
+     * @param keyword the keyword of the item
+     * @return the item
+     */
     public List<Item> searchStream(String keyword) {
         Set<String> seenTitles = new HashSet<>();
         return  items.stream()
