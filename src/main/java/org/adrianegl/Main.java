@@ -16,5 +16,8 @@ public class Main {
         Teacher teacher = new Teacher("Jose");
         Admin admin = new Admin("George");
 
+        library.registerUser(student);
+        library.registerUser(teacher);
+        library.registerUser(admin);
     }
 }
