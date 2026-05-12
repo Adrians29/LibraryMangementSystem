@@ -22,5 +22,23 @@ public class Main {
         DVD dvd = new DVD("Batman Begins", Item.ItemStatus.IN_STORE, "Christopher Nolan", 140);
         Magazine magazine = new Magazine("National Geographic", Item.ItemStatus.IN_STORE, "Polo", 9);
 
+        library.addItem(book1);
+        library.addItem(book2);
+        library.addItem(dvd);
+        library.addItem(magazine);
+
+        try {
+            library.borrowItem(student.getId(), book1.getId());
+            System.out.println("Student borrowed a book successfully");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            library.borrowItem(teacher.getId(), dvd.getId());
+            System.out.println("Teacher borrowed DVD successfully");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
