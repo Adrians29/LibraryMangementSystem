@@ -15,14 +15,12 @@ public class Library {
     @Getter private Map<String, User> users;
     private Queue<User> waitingQueue;
     private Stack<String> transactionHistory;
-    private Set<String> uniqueTitles;
 
     public Library() {
         items = new ArrayList<>();
         users = new HashMap<>();
         waitingQueue = new LinkedList<>();
         transactionHistory = new Stack<>();
-        uniqueTitles = new HashSet<>();
     }
 
     public void addItem(Item item) {
@@ -170,7 +168,7 @@ public class Library {
         File file = new File(Constants.USERS_CSV_PATH);
 
         try (Scanner scanner = new Scanner(file)) {
-            while (scanner.hasNext()) {
+            while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String[] elements = line.split(",");
 
@@ -219,14 +217,45 @@ public class Library {
     public void loadItems() {
         File file = new File(Constants.ITEMS_CSV_PATH);
         try (Scanner scanner = new Scanner(file)) {
-            while (scanner.hasNext()) {
+            while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String[] elements = line.split(",");
                 String type = elements[0];
+                String id = elements[1];
                 Item item = switch (type) {
-                    case "Book" -> new Book(elements[1], Item.ItemStatus.valueOf(elements[2]), elements[3], elements[4], elements[5]);
-                    case "DVD" -> new DVD(elements[1], Item.ItemStatus.valueOf(elements[2]),elements[3], Integer.parseInt(elements[4]));
-                    case "Magazine" -> new Magazine(elements[1], Item.ItemStatus.valueOf(elements[2]), elements[3], Integer.parseInt(elements[4]));
+                    case "Book" -> {
+                        int number = Integer.parseInt(id.substring(1));
+
+                        if (number >= Constants.nextItemId) {
+                            Constants.nextItemId = number + 1;
+                        }
+
+                        Book book = new Book(elements[2], Item.ItemStatus.valueOf(elements[3]), elements[4], elements[5], elements[6]);
+                        book.id = id;
+                        yield book;
+                    }
+                    case "DVD" -> {
+                        int number = Integer.parseInt(id.substring(1));
+
+                        if (number >= Constants.nextItemId) {
+                            Constants.nextItemId = number + 1;
+                        }
+
+                        DVD dvd = new DVD(elements[2], Item.ItemStatus.valueOf(elements[3]), elements[4], Integer.parseInt(elements[5]));
+                        dvd.id = id;
+                        yield dvd;
+                    }
+                    case "Magazine" -> {
+                        int number = Integer.parseInt(id.substring(1));
+
+                        if (number >= Constants.nextItemId) {
+                            Constants.nextItemId = number + 1;
+                        }
+
+                        Magazine magazine = new Magazine(elements[2], Item.ItemStatus.valueOf(elements[3]), elements[4], Integer.parseInt(elements[5]));
+                        magazine.id = id;
+                        yield magazine;
+                    }
                     default -> throw new RuntimeException("Invalid item type");
                 };
                 addItem(item);
