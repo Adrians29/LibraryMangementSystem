@@ -40,5 +40,13 @@ public class Main {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+
+        try {
+            library.returnItem(student.getId(), book1.getId());
+            System.out.println("Book returned successfully");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 }
